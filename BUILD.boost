@@ -1289,9 +1289,6 @@ boost_library(
     hdrs = [
         "boost/cregex.hpp",
     ],
-    defines = [
-        "BOOST_FALLTHROUGH",
-    ],
     deps = [
         ":assert",
         ":config",
