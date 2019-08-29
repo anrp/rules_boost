@@ -517,6 +517,30 @@ boost_library(
     ],
 )
 
+BOOST_CORO2_SRCS = select({
+    ":linux": [
+        "libs/coroutine2/performance/bind_processor_linux.cpp",
+    ],
+    ":windows_x86_64": [
+        "libs/coroutine2/performance/bind_processor_windows.cpp",
+    ],
+    "//conditions:default": [],
+})
+
+boost_library(
+    name = "coroutine2",
+    srcs = BOOST_CORO2_SRCS + ["libs/coroutine2/performance/bind_processor.hpp"],
+    deps = [
+        ":config",
+        ":context",
+        ":move",
+        ":pool",
+        ":range",
+        ":system",
+        ":thread",
+    ],
+)
+
 boost_library(
     name = "crc",
     deps = [
